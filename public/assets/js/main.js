@@ -5,6 +5,7 @@
     const productNameInput = document.querySelector('#productNameInput');
     const productPriceInput = document.querySelector('#productPriceInput');
     const messageDisplay = document.querySelector('#messageDisplay');
+    const productsCollection = document.querySelector('#productsCollection');
 
     productEntryButton.addEventListener('click', e => {
         e.preventDefault();
@@ -17,9 +18,16 @@
         if(error){
             showErrorMessage('Invalid Input');
         }else{
+            resetInput();
+            addItemToFrontend(productNameEntry, productPriceEntry);
             showSuccessMessage('Success !!!');
         }
     });
+
+    function resetInput(){
+        productNameInput.value = '';
+        productPriceInput.value = '';
+    }
 
     function receiveInputs(){
         const productNameEntry =  productNameInput.value;
@@ -53,6 +61,17 @@
         `;
         messageDisplay.innerHTML = '';
         messageDisplay.insertAdjacentHTML('afterbegin',messageElement);
+    }
+
+    function addItemToFrontend(name, price){
+        const item = `
+            <tr>
+                <td class="text-center">${name}</td>
+                <td class="text-end">BDT. ${price}</td>
+                <td class="text-center"><button type="button" style="background: none; border: 0; padding:0"><i class="fa fa-trash text-danger"></i></button></td>
+            </tr>
+        `;
+        productsCollection.insertAdjacentHTML('beforeend',item);
     }
 
 })();
