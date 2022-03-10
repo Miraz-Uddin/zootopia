@@ -30,6 +30,7 @@
             // Show a Success Message if 'Succeed'
             showSuccessMessage('Success !!!');
         }
+        console.log(products);
     });
 
     function generateAProduct(name, price){
@@ -45,9 +46,25 @@
     productsCollection.addEventListener('click',e=>{
         e.preventDefault();
         if(e.target.classList.contains('deleteBtn')){
-            console.log('delete button selected');
+            const removableId = getremovableIdItem(e.target);
+            removeItemFromUI(removableId);
+            removeItemFromStorage(removableId);
         }
+        console.log(products);
     });
+
+    function removeItemFromUI(itemIdToRemove){
+        document.querySelector(`#item-${itemIdToRemove}`).remove();
+    }
+    
+    function removeItemFromStorage(itemIdToRemove){
+        const productListArray = products.filter(x=>x.id !== itemIdToRemove);
+        products = productListArray;
+    }
+
+    function getremovableIdItem(obj){
+        return obj.parentElement.parentElement.parentElement.id.split('-')[1];
+    }
 
     function resetInput(){
         productNameInput.value = '';
@@ -99,5 +116,7 @@
         `;
         productsCollection.insertAdjacentHTML('beforeend',item);
     }
+
+    console.log(products);
 
 })();
