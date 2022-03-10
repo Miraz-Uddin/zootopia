@@ -16,17 +16,92 @@
 
     <!-- Favicon -->
 
-    <title>Project Name</title>
+    <title>Zootopia</title>
   </head>
   <body>
     <div class="container">
       <div class="row">
         <div class="col-12">
-          <h1 class="text-center text-primary">Welcome to Zootopia <sub class="text-warning">(v2.0)</sub></h1>
+          <h1 class="text-center text-primary mb-5">Welcome to Zootopia <sub class="text-warning">(v2.0)</sub></h1>
+          
           <hr>
         </div>
       </div>
-    </div>
+      <div class="row ">
+        <div class="col-md-12 col-lg-12 col-xl-9">
+          <div class="row">
+            <div class="col-md-12 col-lg-6 col-xl-6 col-xxl-4 mb-3">
+              <form>
+                <div class="input-group">
+                  <input type="text" class="form-control" placeholder="Product Price" id="searchInput">
+                  <button class="btn btn-danger" type="button" id="searchPriceButton">Search By Price</button>
+                </div>
+              </form>
+            </div>
+            <div class="col-md-12 col-lg-6 col-xl-6 col-xxl-4 mb-3">
+              <form>
+                <div class="input-group">
+                  <button class="btn btn-warning" type="button" id="orderByAscending">Descending Order</button>
+                  <button class="btn btn-info" type="button" id="orderByDescending">Ascending Order</button>
+                </div>
+              </form>
+            </div>
+            <div class="col-md-12 col-lg-6 col-xl-6 col-xxl-4 mb-3">
+              <form>
+                <div class="input-group">
+                  <button class="btn btn-primary" type="button" id="searchNameButton">Search By Name</button>
+                  <input type="text" class="form-control" placeholder="Product Name" id="searchInput">
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <table class="table table-info">
+                <thead class="thead-light">
+                  <tr>
+                    <th class="text-center">Name</th>
+                    <th class="text-end">Price</th>
+                    <th class="text-center">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="text-center">Tomato</td>
+                    <td class="text-end">BDT. 10</td>
+                    <td class="text-center"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12 col-lg-4 col-xl-3">
+          <div class="card">
+            <form>
+              <div class="card-header">
+                <h5>Product Entry Form</h5>
+              </div>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col">
+                    <input type="text" class="form-control" placeholder="Name" id="productNameInsert">
+                  </div>
+                  <div class="col">
+                    <input type="text" class="form-control" placeholder="Price" id="productPriceInsert">
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer">
+                <button type="button" class="btn btn-success form-control">Insert New</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="row" style="padding-bottom: 666px;"></div>
+   </div>
+      
 
 
     <!-- Bootstrap JS v5.0 -->
