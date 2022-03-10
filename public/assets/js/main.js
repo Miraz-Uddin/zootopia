@@ -7,23 +7,7 @@
     const messageDisplay = document.querySelector('#messageDisplay');
     const productsCollection = document.querySelector('#productsCollection');
 
-    let products = [
-        {
-            id: 1,
-            name: 'Potato',
-            price: 50
-        },
-        {
-            id: 2,
-            name: 'Soyabin Oil',
-            price: 500
-        },
-        {
-            id: 3,
-            name: 'Watermelon',
-            price: 789
-        }
-    ];
+    let products = [];
 
     productEntryButton.addEventListener('click', e => {
         e.preventDefault();
@@ -36,17 +20,27 @@
         if(error){
             showErrorMessage('Invalid Input');
         }else{
-            products.push({
-                id: products.length+1,
-                name: productNameEntry,
-                price: productPriceEntry
-            });
-            console.log(products);
+            // Resetting inputs
             resetInput();
-            addItemToFrontend(productNameEntry, productPriceEntry);
+
+            // Create & store & a Product
+            const getId = generateAProduct(productNameEntry,productPriceEntry);
+            addItemToFrontend(getId, productNameEntry, productPriceEntry);
+
+            // Show a Success Message if 'Succeed'
             showSuccessMessage('Success !!!');
         }
     });
+
+    function generateAProduct(name, price){
+        const id = products.length+1;
+        products.push({
+            id: id,
+            name: name,
+            price: price
+        });
+        return id;
+    }
 
     productsCollection.addEventListener('click',e=>{
         e.preventDefault();
@@ -94,9 +88,9 @@
         messageDisplay.insertAdjacentHTML('afterbegin',messageElement);
     }
 
-    function addItemToFrontend(name, price){
+    function addItemToFrontend(id, name, price){
         const item = `
-            <tr id="item-1">
+            <tr id="item-${id}">
                 <td class="text-center">${name}</td>
                 <td class="text-end">BDT. ${price}</td>
                 <td class="text-center"><button type="button" style="background: none; border: 0; padding:0">
@@ -107,9 +101,3 @@
     }
 
 })();
-
-/**
- * Steps:
- * 1) Receive Inputs
- * 1) Validate Inputs
-*/
