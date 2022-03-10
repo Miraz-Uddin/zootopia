@@ -69,7 +69,7 @@
                   <tr>
                     <td class="text-center">Tomato</td>
                     <td class="text-end">BDT. 10</td>
-                    <td class="text-center"></td>
+                    <td class="text-center"><button type="button" style="background: none; border: 0; padding:0"><i class="fa fa-trash text-danger"></i></button></td>
                   </tr>
                 </tbody>
               </table>
@@ -77,6 +77,7 @@
           </div>
         </div>
         <div class="col-md-12 col-lg-4 col-xl-3">
+          <div id="messageDisplay"></div>
           <div class="card">
             <form>
               <div class="card-header">
@@ -85,21 +86,21 @@
               <div class="card-body">
                 <div class="row">
                   <div class="col">
-                    <input type="text" class="form-control" placeholder="Name" id="productNameInsert">
+                    <input type="text" class="form-control" placeholder="Name" id="productNameInput">
                   </div>
                   <div class="col">
-                    <input type="text" class="form-control" placeholder="Price" id="productPriceInsert">
+                    <input type="text" class="form-control" placeholder="Price" id="productPriceInput">
                   </div>
                 </div>
               </div>
               <div class="card-footer">
-                <button type="button" class="btn btn-success form-control">Insert New</button>
+                <button type="button" class="btn btn-success form-control"  id="productEntryButton">Insert New</button>
               </div>
             </form>
           </div>
         </div>
       </div>
-      <div class="row" style="padding-bottom: 666px;"></div>
+      <div class="row" style="padding-bottom: 80vh;"></div>
    </div>
       
 
