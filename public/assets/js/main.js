@@ -33,16 +33,6 @@
         console.log(products);
     });
 
-    function generateAProduct(name, price){
-        const id = products.length+1;
-        products.push({
-            id: id,
-            name: name,
-            price: price
-        });
-        return id;
-    }
-
     productsCollection.addEventListener('click',e=>{
         e.preventDefault();
         if(e.target.classList.contains('deleteBtn')){
@@ -52,6 +42,16 @@
         }
         console.log(products);
     });
+
+    function generateAProduct(name, price){
+        const id = products.length+1;
+        products.push({
+            id: id,
+            name: name,
+            price: price
+        });
+        return id;
+    }
 
     function removeItemFromUI(itemIdToRemove){
         document.querySelector(`#item-${itemIdToRemove}`).remove();

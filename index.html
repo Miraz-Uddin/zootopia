@@ -22,46 +22,25 @@
     <div class="container">
       <div class="row">
         <div class="col-12">
-          <h1 class="text-center text-primary mb-5">Welcome to Zootopia <sub class="text-warning">(v2.0)</sub></h1>
-          
-          <hr>
+          <h1 class="text-center text-primary mb-5">Welcome to ' <span class="text-info">কাঁচা বাজার</span> '</h1>
         </div>
       </div>
-      <div class="row ">
-        <div class="col-md-12 col-lg-12 col-xl-9">
-          <div class="row">
-            <div class="col-md-12 col-lg-6 col-xl-6 col-xxl-3 mb-3">
-              <form>
-                <div class="input-group">
-                  <input type="text" class="form-control" placeholder="Product Price" id="searchInput">
-                  <button class="btn btn-danger" type="button" id="searchPriceButton">Search By Price</button>
-                </div>
-              </form>
-            </div>
-            <div class="col-md-12 col-lg-6 col-xl-6 col-xxl-6 mb-3">
-              <form>
-                <div class="input-group">
-                  <button class="btn btn-warning" type="button" id="orderByAscending">Descending Order</button>
-                  <button class="btn btn-info" type="button" id="orderByDescending">Ascending Order</button>
-                </div>
-              </form>
-            </div>
-            <div class="col-md-12 col-lg-6 col-xl-6 col-xxl-3 mb-3">
-              <form>
-                <div class="input-group">
-                  <button class="btn btn-primary" type="button" id="searchNameButton">Search By Name</button>
-                  <input type="text" class="form-control" placeholder="Product Name" id="searchInput">
-                </div>
-              </form>
-            </div>
-          </div>
+      <div class="row">
+        <div class="col-md-12 col-lg-8">
           <div class="row">
             <div class="col-12">
               <table class="table table-info">
                 <thead class="thead-light">
                   <tr>
-                    <th class="text-center">Name</th>
-                    <th class="text-end">Price</th>
+                    <th class="text-center">
+                      Name
+                      <input type="search" placeholder="search ..." id="nameSearchInput">
+                    </th>
+                    <th class="text-end">
+                      <a href="#" id=""><i class="fa fa-arrow-up text-success"></i></a>
+                      Price
+                      <a href="#"><i class="fa fa-arrow-down text-danger"></i></a>
+                    </th>
                     <th class="text-center">Action</th>
                   </tr>
                 </thead>
@@ -70,12 +49,12 @@
             </div>
           </div>
         </div>
-        <div class="col-md-12 col-lg-4 col-xl-3">
+        <div class="col-md-12 col-lg-4">
           <div id="messageDisplay"></div>
           <div class="card">
             <form>
               <div class="card-header">
-                <h5>Product Entry Form</h5>
+                <h5 class="text-center" style="color: darkolivegreen;">Product Entry Form</h5>
               </div>
               <div class="card-body">
                 <div class="row">
@@ -88,7 +67,7 @@
                 </div>
               </div>
               <div class="card-footer">
-                <button type="button" class="btn btn-success form-control"  id="productEntryButton">Insert New</button>
+                <button type="button" class="btn btn-outline-dark btn-sm form-control"  id="productEntryButton">Insert New</button>
               </div>
             </form>
           </div>
