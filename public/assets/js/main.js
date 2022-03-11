@@ -16,6 +16,7 @@
     const productNameInput = document.querySelector('#productNameInput');
     const productPriceInput = document.querySelector('#productPriceInput');
     const productEntryButton = document.querySelector('#productEntryButton');
+    const nameSearchInput = document.querySelector('#nameSearchInput');
 
     productsTableCreate(productList);
 
@@ -45,6 +46,13 @@
     productEntryButton.addEventListener('click',function(e){
         e.preventDefault();
         insertNewProduct(this);
+    });
+
+    nameSearchInput.addEventListener('input',function(e){
+        e.preventDefault();
+        const filteredList = productList.filter(x=>x.name.toLowerCase().includes(this.value.toLowerCase()));
+        clearProductTable();
+        productsTableCreate(filteredList);
     });
 
     function insertNewProduct(obj){
