@@ -4,7 +4,6 @@
     let productList = [
         {id:1647023693316, name:'Tomato', price:45},
         {id:1647023693326, name:'Fish', price:1150},
-        {id:1647023693336, name:'Chicken', price: 300},
         {id:1647023693346, name: 'Soybean Oil', price: 650},
         {id:1647023693356, name: 'Salt', price: 35}
     ];
@@ -59,6 +58,7 @@
             productRowCreate(customProduct);
             clearProductTable();
             productsTableCreate(productList);
+            clearProductEntryForm();
         }else{
             obj.style.border = '2px solid red';
         }
@@ -78,6 +78,11 @@
         let html_collection = productsCollection.children;
         let arr = [...html_collection].filter(e =>e.classList.contains("product"));
         arr.map(x=>x.remove());
+    }
+
+    function clearProductEntryForm(){
+        productPriceInput.value = '';
+        productNameInput.value = '';
     }
 
     function productsTableCreate(list,sortBy='desc'){
