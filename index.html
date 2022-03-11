@@ -20,32 +20,50 @@
   </head>
   <body>
     <div class="container">
-      <div class="row">
+      <div class="row pt-3">
         <div class="col-12">
-          <h1 class="text-center text-primary mb-5">Welcome to ' <span class="text-info">কাঁচা বাজার</span> '</h1>
+          <h1 class="text-center text-primary mb-5"><span class="text-info">কাঁচা বাজারে স্বাগতম</span></h1>
         </div>
       </div>
       <div class="row">
         <div class="col-md-12 col-lg-8">
           <div class="row">
             <div class="col-12">
-              <table class="table table-info">
-                <thead class="thead-light">
-                  <tr>
-                    <th class="text-center">
-                      Name
-                      <input type="search" placeholder="search ..." id="nameSearchInput">
-                    </th>
-                    <th class="text-end">
-                      <a href="#" id=""><i class="fa fa-arrow-up text-success"></i></a>
-                      Price
-                      <a href="#"><i class="fa fa-arrow-down text-danger"></i></a>
-                    </th>
-                    <th class="text-center">Action</th>
+              <div class="table-responsive">
+                <table class="table text-light table-bordered border border-info">
+                  <thead class="thead-light">
+                    <tr>
+                      <th class="text-center">
+                        Name
+                      <input type="search" placeholder="SEARCH ..." id="nameSearchInput"></th>
+                      <th class="text-center">
+                        <div class="price_head">
+                          <a href="#" id=""><i class="fa fa-arrow-up text-success"></i></a>
+                        Price
+                        <a href="#"><i class="fa fa-arrow-down text-danger"></i></a>
+                        </div>
+                      </th>
+                      <th class="text-center">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody id="productsCollection">
+                    <tr class="bg-dark">
+                      <td class="text-end">Total</td>
+                      <td class="text-end">
+                          <div class="clearfix">
+                              <span class="float-start">BDT.</span>
+                              <span class="float-end">3000</span>
+                          </div>
+                      </td>
+                      <td class="text-center">
+                        <form>
+                          <input id="resetAll" type="button" class="btn btn-sm btn-warning" value="All Clear">
+                        </form>
+                      </td>
                   </tr>
-                </thead>
-                <tbody id="productsCollection"></tbody>
-              </table>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
@@ -67,7 +85,9 @@
                 </div>
               </div>
               <div class="card-footer">
-                <button type="button" class="btn btn-outline-dark btn-sm form-control"  id="productEntryButton">Insert New</button>
+                <div class="d-flex justify-content-center">
+                    <button type="button" class="btn btn-outline-dark btn-sm"  id="productEntryButton">Insert New</button>
+                </div>
               </div>
             </form>
           </div>

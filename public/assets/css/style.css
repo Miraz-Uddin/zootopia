@@ -22,16 +22,40 @@ body::before{
     position: relative;
 }
 
-[type="search"] {
-    border: 1px solid rgb(0, 0, 0);
-    border-radius: 25px;
-    margin-left: 5rem;
+.deleteBtn{
+    font-size: 14px;
 }
 
-#nameSearchInput{
-    padding: .2rem 1rem;
+#resetAll{
+    padding: 0px 15px;
+}
+
+
+[type="search"] {
+	border: 1px solid rgb(0, 0, 0);
+	border-radius: 25px;
+	padding: 2px 11px;
+	font-size: 12px;
 }
 
 th{
     vertical-align: middle;
+}
+
+[type="search"] {
+	width: 170px;
+    margin-left: 15px;
+}
+
+@media (max-width: 778.98px) {
+    [type="search"] {
+        width: 150px;
+        margin-left: 5px;
+    }
+}
+@media (max-width: 575.98px) {
+    [type="search"] {
+        width: 130px;
+        margin-left: 0;
+    }
 }
