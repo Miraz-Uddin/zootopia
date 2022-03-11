@@ -2,60 +2,77 @@
 (() => {
     
     let productList = [
-        {
-            id:1,
-            name: 'Tomato',
-            price: 45
-        },
-        {
-            id:2,
-            name: 'Fish',
-            price: 1150
-        },
-        {
-            id:3,
-            name: 'Chicken',
-            price: 300
-        },
-        {
-            id:4,
-            name: 'Soybean Oil',
-            price: 650
-        },
-        {
-            id:5,
-            name: 'Salt',
-            price: 35
-        }
+        {id:1647023693316, name:'Tomato', price:45},
+        {id:1647023693326, name:'Fish', price:1150},
+        {id:1647023693336, name:'Chicken', price: 300},
+        {id:1647023693346, name: 'Soybean Oil', price: 650},
+        {id:1647023693356, name: 'Salt', price: 35}
     ];
     
-
     const productsCollection = document.querySelector('#productsCollection');
     const sortBtnAsc = document.querySelector('#sortBtnAsc');
     const sortBtnDesc = document.querySelector('#sortBtnDesc');
     const sumOfProducts = document.querySelector('#sumOfProducts');
     const resetAll = document.querySelector('#resetAll');
+    const productNameInput = document.querySelector('#productNameInput');
+    const productPriceInput = document.querySelector('#productPriceInput');
+    const productEntryButton = document.querySelector('#productEntryButton');
+
     productsTableCreate(productList);
 
-    sortBtnAsc.addEventListener('click',e=>{
+    sortBtnAsc.addEventListener('click',function(e){
         e.preventDefault();
         clearProductTable();
         productsTableCreate(productList,'asc');
-        console.log(productList);
     });
 
-    sortBtnDesc.addEventListener('click',e=>{
+    sortBtnDesc.addEventListener('click',function(e){
         e.preventDefault();
         clearProductTable();
         productsTableCreate(productList,'desc');
-        console.log(productList);
     });
 
-    resetAll.addEventListener('click',e=>{
+    resetAll.addEventListener('click',function(e){
         e.preventDefault();
         productList.length = 0;
         productsTableCreate(productList);
     });
+
+    productPriceInput.addEventListener('keyup',function(e){
+        e.preventDefault();
+        checkIntValue(this)
+    });
+
+    productEntryButton.addEventListener('click',function(e){
+        e.preventDefault();
+        insertNewProduct(this);
+    });
+
+    function insertNewProduct(obj){
+        checkIntValue(obj);
+        const name = productNameInput.value.trim();
+        const price = productPriceInput.value;
+        if(!!name && name.length > 2){
+            const productId = Date.now();
+            const customProduct = {id:productId,name,price};
+            productList.push(customProduct);
+            productRowCreate(customProduct);
+            clearProductTable();
+            productsTableCreate(productList);
+        }else{
+            obj.style.border = '2px solid red';
+        }
+    }
+
+    function checkIntValue(obj){
+        let valueValue = parseInt(obj.value);
+        obj.value = '';
+        if(Boolean(valueValue) == true && valueValue >= 0){
+            obj.value = valueValue;
+            return true;
+        }
+        return false;
+    }
 
     function clearProductTable(){
         let html_collection = productsCollection.children;
@@ -69,43 +86,20 @@
             clearProductTable()
         }else{
             if(sortBy=='desc'){
-                list.sort((a,b)=>{
-                    return parseInt(a.price)>parseInt(b.price);
-                }).forEach(element => {
-                    productRowCreate(element);
-                });
+                list.sort((a,b)=>parseInt(a.price)>parseInt(b.price)).forEach(element => {productRowCreate(element)});
             }else{
-                list.sort((a,b)=>{
-                    return parseInt(a.price)<parseInt(b.price);
-                }).forEach(element => {
-                    productRowCreate(element);
-                });
+                list.sort((a,b)=>parseInt(a.price)<parseInt(b.price)).forEach(element => {productRowCreate(element)});
             }
-            sumOfProducts.textContent = list.reduce((a,b)=>{
-                return { price : parseInt(a['price']) + parseInt(b['price'])};
-            }).price;
+            sumOfProducts.textContent = list.reduce((a,b)=>{return { price : parseInt(a['price']) + parseInt(b['price'])}}).price;
         }
-        
-        
     }
 
     function productRowCreate(product){
-        const item = `
-            <tr id="item-${product.id}" class="product">
-                <td class="text-center">${product.name}</td>
-                <td class="text-end">
-                    <div class="clearfix">
-                        <span class="float-start">BDT.</span>
-                        <span class="float-end">${product.price}</span>
-                    </div>
-                </td>
-                <td class="text-center">
-                <button type="button" style="background: none; border: 0; padding:0">
-                    <span class="text-danger deleteBtn">বাদ দিন</span>
-                </button></td>
-            </tr>
-        `;
-        productsCollection.insertAdjacentHTML('afterbegin',item);
+        productsCollection.insertAdjacentHTML('afterbegin',`<tr id="item-${product.id}" class="product">
+        <td class="text-center">${product.name}</td><td class="text-end"><div class="clearfix">
+        <span class="float-start">BDT.</span><span class="float-end">${product.price}</span>
+        </div></td><td class="text-center"><button type="button" style="background: none; border: 0; padding:0">
+        <span class="text-danger deleteBtn">বাদ দিন</span></button></td></tr>`);
     }
 
 })();
