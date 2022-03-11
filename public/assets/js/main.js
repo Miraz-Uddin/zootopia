@@ -5,27 +5,27 @@
         {
             id:1,
             name: 'Tomato',
-            price: 130
+            price: 45
         },
         {
             id:2,
             name: 'Fish',
-            price: 1500
+            price: 1150
         },
         {
             id:3,
             name: 'Chicken',
-            price: 600
+            price: 300
         },
         {
             id:4,
-            name: 'Soyabin Oild',
-            price: 700
+            name: 'Soybean Oil',
+            price: 650
         },
         {
             id:5,
             name: 'Salt',
-            price: 70
+            price: 35
         }
     ];
     
