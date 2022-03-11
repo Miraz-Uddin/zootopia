@@ -2,11 +2,11 @@
 (() => {
     
     let productList = [
-        // {
-        //     id:1,
-        //     name: 'Tomato',
-        //     price: 130
-        // },
+        {
+            id:1,
+            name: 'Tomato',
+            price: 130
+        },
         {
             id:2,
             name: 'Fish',
@@ -34,18 +34,27 @@
     const sortBtnAsc = document.querySelector('#sortBtnAsc');
     const sortBtnDesc = document.querySelector('#sortBtnDesc');
     const sumOfProducts = document.querySelector('#sumOfProducts');
+    const resetAll = document.querySelector('#resetAll');
     productsTableCreate(productList);
 
     sortBtnAsc.addEventListener('click',e=>{
         e.preventDefault();
         clearProductTable();
         productsTableCreate(productList,'asc');
+        console.log(productList);
     });
 
     sortBtnDesc.addEventListener('click',e=>{
         e.preventDefault();
         clearProductTable();
         productsTableCreate(productList,'desc');
+        console.log(productList);
+    });
+
+    resetAll.addEventListener('click',e=>{
+        e.preventDefault();
+        productList.length = 0;
+        productsTableCreate(productList);
     });
 
     function clearProductTable(){
@@ -55,22 +64,29 @@
     }
 
     function productsTableCreate(list,sortBy='desc'){
-        if(sortBy=='desc'){
-            list.sort((a,b)=>{
-                return parseInt(a.price)>parseInt(b.price);
-            }).forEach(element => {
-                productRowCreate(element);
-            });
+        if(list.length == 0){
+            sumOfProducts.textContent = 0;
+            clearProductTable()
         }else{
-            list.sort((a,b)=>{
-                return parseInt(a.price)<parseInt(b.price);
-            }).forEach(element => {
-                productRowCreate(element);
-            });
+            if(sortBy=='desc'){
+                list.sort((a,b)=>{
+                    return parseInt(a.price)>parseInt(b.price);
+                }).forEach(element => {
+                    productRowCreate(element);
+                });
+            }else{
+                list.sort((a,b)=>{
+                    return parseInt(a.price)<parseInt(b.price);
+                }).forEach(element => {
+                    productRowCreate(element);
+                });
+            }
+            sumOfProducts.textContent = list.reduce((a,b)=>{
+                return { price : parseInt(a['price']) + parseInt(b['price'])};
+            }).price;
         }
-        sumOfProducts.textContent = list.reduce((a,b)=>{
-            return { price : parseInt(a['price']) + parseInt(b['price'])};
-        }).price;
+        
+        
     }
 
     function productRowCreate(product){
