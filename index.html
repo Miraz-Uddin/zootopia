@@ -38,9 +38,9 @@
                       <input type="search" placeholder="SEARCH ..." id="nameSearchInput"></th>
                       <th class="text-center">
                         <div class="price_head">
-                          <a href="#" id=""><i class="fa fa-arrow-up text-success"></i></a>
-                        Price
-                        <a href="#"><i class="fa fa-arrow-down text-danger"></i></a>
+                          <a href="#" id="sortBtnAsc"><i class="fa fa-arrow-up text-success"></i></a>
+                          Price
+                          <a href="#" id="sortBtnDesc"><i class="fa fa-arrow-down text-danger"></i></a>
                         </div>
                       </th>
                       <th class="text-center">Action</th>
@@ -48,19 +48,19 @@
                   </thead>
                   <tbody id="productsCollection">
                     <tr class="bg-dark">
-                      <td class="text-end">Total</td>
-                      <td class="text-end">
-                          <div class="clearfix">
-                              <span class="float-start">BDT.</span>
-                              <span class="float-end">3000</span>
-                          </div>
-                      </td>
-                      <td class="text-center">
-                        <form>
-                          <input id="resetAll" type="button" class="btn btn-sm btn-warning" value="All Clear">
-                        </form>
-                      </td>
-                  </tr>
+                        <td class="text-end">Total</td>
+                        <td class="text-end">
+                            <div class="clearfix">
+                                <span class="float-start">BDT.</span>
+                                <span class="float-end" id="sumOfProducts">3000</span>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                          <form>
+                            <input id="resetAll" type="button" class="btn btn-sm btn-warning" value="All Clear">
+                          </form>
+                        </td>
+                    </tr>
                   </tbody>
                 </table>
               </div>
