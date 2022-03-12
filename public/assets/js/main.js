@@ -12,12 +12,15 @@
     const sortBtnAsc = document.querySelector('#sortBtnAsc');
     const sortBtnDesc = document.querySelector('#sortBtnDesc');
     const sumOfProducts = document.querySelector('#sumOfProducts');
+    const nameSearchInput = document.querySelector('#nameSearchInput');
     const resetAll = document.querySelector('#resetAll');
     const productNameInput = document.querySelector('#productNameInput');
     const productPriceInput = document.querySelector('#productPriceInput');
     const productEntryButton = document.querySelector('#productEntryButton');
-    const nameSearchInput = document.querySelector('#nameSearchInput');
+    const productUpdateButton = document.querySelector('#productUpdateButton');
     const editableProductNameDisplay = document.querySelector('#editableProductNameDisplay');
+    const editableProductPriceInput = document.querySelector('#editableProductPriceInput');
+    const editableProductNameInput = document.querySelector('#editableProductNameInput');
 
     productsTableCreate(productList);
 
@@ -49,6 +52,31 @@
         insertNewProduct(this);
     });
 
+    productUpdateButton.addEventListener('click',function(e){
+        e.preventDefault();
+        // updateNewProduct(this);
+       
+        const updateableItemId = getUpdateItemId(e.target)
+
+        if(updateableItemId){
+
+            const name = productNameInput.value.trim();
+            const price = productPriceInput.value;
+            
+            const index = productList.findIndex(object => {
+                return object.id == updateableItemId;
+            });
+
+            console.log(index);
+            const customProduct = {id:updateableItemId,name,price};
+            console.log(customProduct);
+            
+        }else{
+            console.log('No item to update');
+        }
+            
+    });
+
     nameSearchInput.addEventListener('input',function(e){
         e.preventDefault();
         const filteredList = productList.filter(x=>x.name.toLowerCase().includes(this.value.toLowerCase()));
@@ -68,19 +96,31 @@
         if(e.target.classList.contains('editBtn')){
             const editId = getItemId(e.target);
             const editProductObject = productList.find(object => object.id == editId);
-            console.log(editId);
-            console.log(editProductObject);
             populateEditForm(editProductObject);
+            productUpdateButton.parentElement.id=`updatedItemId-${editId}`;
         }
+
+        /**
+         * const index = arr.indexOf('a');
+                if (indexOf !== -1) {
+                arr[index] = 'z';
+            }
+        */
             
     });
 
     function populateEditForm(obj){
         editableProductNameDisplay.textContent = obj.name;
+        editableProductPriceInput.value = obj.price;
+        editableProductNameInput.value = obj.name;
     }
 
     function getItemId(elem){
         return elem.parentElement.parentElement.parentElement.parentElement.id.split('-')[1];
+    }
+
+    function getUpdateItemId(elem){
+        return elem.parentElement.id.split('-')[1];
     }
 
     function insertNewProduct(obj){
@@ -99,6 +139,23 @@
             obj.style.border = '2px solid red';
         }
     }
+
+    // function updateNewProduct(obj){
+    //     checkIntValue(obj);
+    //     const name = productNameInput.value.trim();
+    //     const price = productPriceInput.value;
+    //     if(!!name && name.length > 2){
+    //         const productId = Date.now();
+    //         const customProduct = {id:productId,name,price};
+    //         productList.push(customProduct);
+    //         productRowCreate(customProduct);
+    //         clearProductTable();
+    //         productsTableCreate(productList);
+    //         clearProductEntryForm();
+    //     }else{
+    //         obj.style.border = '2px solid red';
+    //     }
+    // }
 
     function checkIntValue(obj){
         let valueValue = parseInt(obj.value);
