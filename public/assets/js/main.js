@@ -21,6 +21,7 @@
     const editableProductNameDisplay = document.querySelector('#editableProductNameDisplay');
     const editableProductPriceInput = document.querySelector('#editableProductPriceInput');
     const editableProductNameInput = document.querySelector('#editableProductNameInput');
+    const editForm = document.querySelector('#editForm');
 
     productsTableCreate(productList);
 
@@ -95,6 +96,7 @@
             const editProductObject = productList.find(object => object.id == editId);
             populateEditForm(editProductObject);
             productUpdateButton.parentElement.id=`updatedItemId-${editId}`;
+            editForm.classList.remove("d-none");
         }
             
     });
@@ -131,6 +133,8 @@
     }
 
     function updateNewProduct(index,updatedProduct){
+        editForm.classList.remove("d-none");
+        editForm.classList.add("d-none");
         productList[index].id = updatedProduct.id;
         productList[index].name = updatedProduct.name;
         productList[index].price = updatedProduct.price;
@@ -184,6 +188,8 @@
             }
             sumOfProducts.textContent = list.reduce((a,b)=>{return { price : parseInt(a['price']) + parseInt(b['price'])}}).price;
         }
+        editForm.classList.remove("d-none");
+        editForm.classList.add("d-none");
     }
 
     function productRowCreate(product){
