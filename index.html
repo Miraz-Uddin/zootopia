@@ -66,10 +66,32 @@
         </div>
         <div class="col-md-12 col-lg-4">
           <div id="messageDisplay"></div>
-          <div class="card">
+          <div class="card bg-warning">
             <form>
               <div class="card-header">
-                <h5 class="text-center" style="color: darkolivegreen;">Product Entry Form</h5>
+                <h5 class="text-center" style="color: rgb(0, 0, 0);">Edit <span id="editableProductNameDisplay">Potato</span>'s info</h5>
+              </div>
+              <div class="card-body">
+                <div class="row g-1">
+                  <div class="col">
+                    <input type="text" class="form-control" placeholder="Price" id="editableProductPriceInput">
+                  </div>
+                  <div class="col">
+                    <input type="text" class="form-control" placeholder="Name" id="editableProductNameInput">
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer">
+                <div class="d-flex justify-content-center">
+                    <button type="button" class="btn btn-outline-dark btn-sm"  id="productUpdateButton">Click to Update</button>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="card mt-5 bg-dark">
+            <form>
+              <div class="card-header">
+                <h5 class="text-center" style="color: rgb(0, 255, 64);">Product Entry Form</h5>
               </div>
               <div class="card-body">
                 <div class="row g-1">
@@ -83,7 +105,7 @@
               </div>
               <div class="card-footer">
                 <div class="d-flex justify-content-center">
-                    <button type="button" class="btn btn-outline-dark btn-sm"  id="productEntryButton">Insert New</button>
+                    <button type="button" class="btn btn-success btn-sm"  id="productEntryButton">Insert New</button>
                 </div>
               </div>
             </form>

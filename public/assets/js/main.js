@@ -17,6 +17,7 @@
     const productPriceInput = document.querySelector('#productPriceInput');
     const productEntryButton = document.querySelector('#productEntryButton');
     const nameSearchInput = document.querySelector('#nameSearchInput');
+    const editableProductNameDisplay = document.querySelector('#editableProductNameDisplay');
 
     productsTableCreate(productList);
 
@@ -69,9 +70,14 @@
             const editProductObject = productList.find(object => object.id == editId);
             console.log(editId);
             console.log(editProductObject);
+            populateEditForm(editProductObject);
         }
             
     });
+
+    function populateEditForm(obj){
+        editableProductNameDisplay.textContent = obj.name;
+    }
 
     function getItemId(elem){
         return elem.parentElement.parentElement.parentElement.parentElement.id.split('-')[1];
