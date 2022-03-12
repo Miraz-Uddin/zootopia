@@ -59,19 +59,22 @@
         e.preventDefault();
         if(e.target.classList.contains('deleteBtn')){
             const removedId = getItemId(e.target);
-            // removed from UI (optional)
-            // document.querySelector('#item-'+removedId).remove();
-            
-            // removed from storage
-            productList.splice(productList.findIndex(object => object.id === removedId), 1);
+            productList.splice(productList.findIndex(object => object.id == removedId), 1);
             clearProductTable();
             productsTableCreate(productList);
+        }
+        
+        if(e.target.classList.contains('editBtn')){
+            const editId = getItemId(e.target);
+            const editProductObject = productList.find(object => object.id == editId);
+            console.log(editId);
+            console.log(editProductObject);
         }
             
     });
 
     function getItemId(elem){
-        return elem.parentElement.parentElement.parentElement.id.split('-')[1];
+        return elem.parentElement.parentElement.parentElement.parentElement.id.split('-')[1];
     }
 
     function insertNewProduct(obj){
@@ -130,8 +133,10 @@
         productsCollection.insertAdjacentHTML('afterbegin',`<tr id="item-${product.id}" class="product">
         <td class="text-center">${product.name}</td><td class="text-end"><div class="clearfix">
         <span class="float-start">BDT.</span><span class="float-end">${product.price}</span>
-        </div></td><td class="text-center"><button type="button" style="background: none; border: 0; padding:0">
-        <span class="text-danger deleteBtn">বাদ দিন</span></button></td></tr>`);
+        </div></td><td class="text-center d-flex justify-content-evenly">
+        <button type="button" style="background: none; border: 0; padding:0"><span class="text-success">
+        <i class="fa fa-pencil editBtn"></i></span></button><button type="button" style="background: none; border: 0; padding:0">
+        <span class="text-danger"><i class="fa fa-minus-circle deleteBtn"></i></span></button></td></tr>`);
     }
 
 })();
