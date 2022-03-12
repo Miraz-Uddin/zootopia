@@ -54,22 +54,19 @@
 
     productUpdateButton.addEventListener('click',function(e){
         e.preventDefault();
-        // updateNewProduct(this);
-       
         const updateableItemId = getUpdateItemId(e.target)
 
         if(updateableItemId){
 
-            const name = productNameInput.value.trim();
-            const price = productPriceInput.value;
+            const name = editableProductNameInput.value.trim();
+            const price = editableProductPriceInput.value;
             
             const index = productList.findIndex(object => {
                 return object.id == updateableItemId;
             });
 
-            console.log(index);
-            const customProduct = {id:updateableItemId,name,price};
-            console.log(customProduct);
+            const updatedProduct = {id:updateableItemId,name,price};
+            updateNewProduct(index,updatedProduct)
             
         }else{
             console.log('No item to update');
@@ -99,13 +96,6 @@
             populateEditForm(editProductObject);
             productUpdateButton.parentElement.id=`updatedItemId-${editId}`;
         }
-
-        /**
-         * const index = arr.indexOf('a');
-                if (indexOf !== -1) {
-                arr[index] = 'z';
-            }
-        */
             
     });
 
@@ -140,10 +130,14 @@
         }
     }
 
-    // function updateNewProduct(obj){
-    //     checkIntValue(obj);
-    //     const name = productNameInput.value.trim();
-    //     const price = productPriceInput.value;
+    function updateNewProduct(index,updatedProduct){
+        productList[index].id = updatedProduct.id;
+        productList[index].name = updatedProduct.name;
+        productList[index].price = updatedProduct.price;
+        clearProductTable();
+        productsTableCreate(productList);
+    }
+
     //     if(!!name && name.length > 2){
     //         const productId = Date.now();
     //         const customProduct = {id:productId,name,price};
@@ -158,10 +152,10 @@
     // }
 
     function checkIntValue(obj){
-        let valueValue = parseInt(obj.value);
+        let val = parseInt(obj.value);
         obj.value = '';
-        if(Boolean(valueValue) == true && valueValue >= 0){
-            obj.value = valueValue;
+        if(Boolean(val) == true && val >= 0){
+            obj.value = val;
             return true;
         }
         return false;
