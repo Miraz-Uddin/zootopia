@@ -2,8 +2,8 @@
 (() => {
     
     let productList = [
-        {id:1647023693316, name:'Tomato', price:45},
-        {id:1647023693326, name:'Fish', price:1150},
+        {id:1647023693316, name:'Egg', price:110},
+        {id:1647023693326, name:'Potato', price:200},
         {id:1647023693346, name: 'Soybean Oil', price: 650},
         {id:1647023693356, name: 'Salt', price: 35}
     ];
@@ -54,6 +54,25 @@
         clearProductTable();
         productsTableCreate(filteredList);
     });
+
+    productsCollection.addEventListener('click',function(e){
+        e.preventDefault();
+        if(e.target.classList.contains('deleteBtn')){
+            const removedId = getItemId(e.target);
+            // removed from UI (optional)
+            // document.querySelector('#item-'+removedId).remove();
+            
+            // removed from storage
+            productList.splice(productList.findIndex(object => object.id === removedId), 1);
+            clearProductTable();
+            productsTableCreate(productList);
+        }
+            
+    });
+
+    function getItemId(elem){
+        return elem.parentElement.parentElement.parentElement.id.split('-')[1];
+    }
 
     function insertNewProduct(obj){
         checkIntValue(obj);
