@@ -1,12 +1,7 @@
 // IIFE
 (() => {
     
-    let productList = [
-        {id:1647023693316, name:'Egg', price:110},
-        {id:1647023693326, name:'Potato', price:200},
-        {id:1647023693346, name: 'Soybean Oil', price: 650},
-        {id:1647023693356, name: 'Salt', price: 35}
-    ];
+    let productList = readItemsFromStorage();
     
     const productsCollection = document.querySelector('#productsCollection');
     const sortBtnAsc = document.querySelector('#sortBtnAsc');
@@ -22,7 +17,7 @@
     const editableProductPriceInput = document.querySelector('#editableProductPriceInput');
     const editableProductNameInput = document.querySelector('#editableProductNameInput');
     const editForm = document.querySelector('#editForm');
-
+    clearProductTable();
     productsTableCreate(productList);
 
     sortBtnAsc.addEventListener('click',function(e){
@@ -41,6 +36,7 @@
         e.preventDefault();
         productList.length = 0;
         productsTableCreate(productList);
+        localStorage.setItem('storedProducts',JSON.stringify([]));
     });
 
     productPriceInput.addEventListener('keyup',function(e){
@@ -56,23 +52,16 @@
     productUpdateButton.addEventListener('click',function(e){
         e.preventDefault();
         const updateableItemId = getUpdateItemId(e.target)
-
         if(updateableItemId){
-
             const name = editableProductNameInput.value.trim();
             const price = editableProductPriceInput.value;
-            
             const index = productList.findIndex(object => {
                 return object.id == updateableItemId;
             });
-
             const updatedProduct = {id:updateableItemId,name,price};
             updateNewProduct(index,updatedProduct)
-            
-        }else{
-            console.log('No item to update');
-        }
-            
+            updateItemInStorage(updatedProduct);
+        }  
     });
 
     nameSearchInput.addEventListener('input',function(e){
@@ -87,6 +76,7 @@
         if(e.target.classList.contains('deleteBtn')){
             const removedId = getItemId(e.target);
             productList.splice(productList.findIndex(object => object.id == removedId), 1);
+            deleteItemFromStorage(removedId);
             clearProductTable();
             productsTableCreate(productList);
         }
@@ -115,6 +105,13 @@
         return elem.parentElement.id.split('-')[1];
     }
 
+    function readItemsFromStorage(){
+        if(localStorage.getItem('storedProducts')){
+            return JSON.parse(localStorage.getItem('storedProducts'));
+        }
+        return [];
+    }
+    
     function insertNewProduct(obj){
         checkIntValue(obj);
         const name = productNameInput.value.trim();
@@ -127,6 +124,7 @@
             clearProductTable();
             productsTableCreate(productList);
             clearProductEntryForm();
+            insertItemToStorage(customProduct);
         }else{
             obj.style.border = '2px solid red';
         }
@@ -142,18 +140,32 @@
         productsTableCreate(productList);
     }
 
-    //     if(!!name && name.length > 2){
-    //         const productId = Date.now();
-    //         const customProduct = {id:productId,name,price};
-    //         productList.push(customProduct);
-    //         productRowCreate(customProduct);
-    //         clearProductTable();
-    //         productsTableCreate(productList);
-    //         clearProductEntryForm();
-    //     }else{
-    //         obj.style.border = '2px solid red';
-    //     }
-    // }
+    function insertItemToStorage(obj){
+        if(localStorage.getItem('storedProducts')){
+            let oldArr = JSON.parse(localStorage.getItem('storedProducts'));
+            oldArr.push(obj);
+            localStorage.setItem('storedProducts',JSON.stringify(oldArr));
+        }else{
+            let newArr = [];
+            newArr.push(obj);
+            localStorage.setItem('storedProducts',JSON.stringify(newArr));
+        }
+    }
+
+    function updateItemInStorage(updatedProduct){
+        let arr = JSON.parse(localStorage.getItem('storedProducts'));
+        let index = arr.findIndex(object => object.id == updatedProduct.id);
+        arr[index].id = updatedProduct.id;
+        arr[index].name = updatedProduct.name;
+        arr[index].price = updatedProduct.price;
+        localStorage.setItem('storedProducts',JSON.stringify(arr));
+    }
+
+    function deleteItemFromStorage(removedId){
+        let arr = JSON.parse(localStorage.getItem('storedProducts'));
+        arr.splice(arr.findIndex(object => object.id == removedId), 1);
+        localStorage.setItem('storedProducts',JSON.stringify(arr));
+    }
 
     function checkIntValue(obj){
         let val = parseInt(obj.value);
